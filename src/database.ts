@@ -14,37 +14,37 @@ export interface Database {
           created_at: string | null
           matchup_id: string
           requested_from: unknown | null
-          tweet_id1: number | null
-          tweet_id2: number | null
+          tweet_id1_str: string | null
+          tweet_id2_str: string | null
         }
         Insert: {
           created_at?: string | null
           matchup_id?: string
           requested_from?: unknown | null
-          tweet_id1?: number | null
-          tweet_id2?: number | null
+          tweet_id1_str?: string | null
+          tweet_id2_str?: string | null
         }
         Update: {
           created_at?: string | null
           matchup_id?: string
           requested_from?: unknown | null
-          tweet_id1?: number | null
-          tweet_id2?: number | null
+          tweet_id1_str?: string | null
+          tweet_id2_str?: string | null
         }
         Relationships: [
           {
-            foreignKeyName: "matchups_tweet_id1_fkey"
-            columns: ["tweet_id1"]
+            foreignKeyName: "matchups_tweet_id1_str_fkey"
+            columns: ["tweet_id1_str"]
             isOneToOne: false
             referencedRelation: "tweets"
-            referencedColumns: ["tweet_id"]
+            referencedColumns: ["tweet_id_str"]
           },
           {
-            foreignKeyName: "matchups_tweet_id2_fkey"
-            columns: ["tweet_id2"]
+            foreignKeyName: "matchups_tweet_id2_str_fkey"
+            columns: ["tweet_id2_str"]
             isOneToOne: false
             referencedRelation: "tweets"
-            referencedColumns: ["tweet_id"]
+            referencedColumns: ["tweet_id_str"]
           }
         ]
       }
@@ -95,6 +95,7 @@ export interface Database {
           lang: string | null
           retweet_count: number | null
           tweet_id: number
+          tweet_id_str: string | null
           user_id: number | null
         }
         Insert: {
@@ -105,6 +106,7 @@ export interface Database {
           lang?: string | null
           retweet_count?: number | null
           tweet_id: number
+          tweet_id_str?: string | null
           user_id?: number | null
         }
         Update: {
@@ -115,6 +117,7 @@ export interface Database {
           lang?: string | null
           retweet_count?: number | null
           tweet_id?: number
+          tweet_id_str?: string | null
           user_id?: number | null
         }
         Relationships: [
@@ -161,21 +164,21 @@ export interface Database {
       votes: {
         Row: {
           matchup_id: string
-          selected_tweet_id: number
+          selected_tweet_id_str: string
           user_ip: unknown | null
           vote_id: number
           voted_at: string
         }
         Insert: {
           matchup_id: string
-          selected_tweet_id: number
+          selected_tweet_id_str: string
           user_ip?: unknown | null
           vote_id?: number
           voted_at?: string
         }
         Update: {
           matchup_id?: string
-          selected_tweet_id?: number
+          selected_tweet_id_str?: string
           user_ip?: unknown | null
           vote_id?: number
           voted_at?: string
@@ -189,11 +192,11 @@ export interface Database {
             referencedColumns: ["matchup_id"]
           },
           {
-            foreignKeyName: "votes_selected_tweet_id_fkey"
-            columns: ["selected_tweet_id"]
+            foreignKeyName: "votes_selected_tweet_id_str_fkey"
+            columns: ["selected_tweet_id_str"]
             isOneToOne: false
             referencedRelation: "tweets"
-            referencedColumns: ["tweet_id"]
+            referencedColumns: ["tweet_id_str"]
           }
         ]
       }
