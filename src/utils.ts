@@ -38,7 +38,7 @@ export async function getMatchup(supabase: SupabaseClient, isDebug: boolean) {
             throw new Error(`Error retrieving matchup: ${error?.message}`);
         }
 
-        return matchup[0];
+        return matchup;
     }
 }
 
