@@ -45,7 +45,7 @@ export async function castBallot(supabase: SupabaseClient, voteData: any, userIp
     );
 
     if (!exists) {
-        throw new Error('Selected tweet does not exist in the matchup');
+        throw new Error('Selected tweet does not exist in the matchup. Make sure you’re using the `tweet_id_str` and not `tweet_id` — JS is doing some weird stuff with large numbers.');
     }
 
     const { data: vote, error: voteError } = await supabase
