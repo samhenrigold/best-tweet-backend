@@ -8,21 +8,38 @@ export function validateEnv() {
 }
 
 // Retrieve Matchup Data
-export async function getMatchup(supabase: SupabaseClient) {
-    let { data: matchup, error } = await supabase
-        .from('matchups')
-        .insert({})
-        .select(`
-            matchup_id,
-            tweet_1:tweet_id1_str(*, tweet_media(*), users(*), in_reply_to_status_id(*, tweet_media(*))),
-            tweet_2:tweet_id2_str(*, tweet_media(*), users(*), in_reply_to_status_id(*, tweet_media(*)))
-        `);
+export async function getMatchup(supabase: SupabaseClient, isDebug: boolean) {
+    if (!isDebug) {
+        let { data: matchup, error } = await supabase
+            .from('matchups')
+            .insert({})
+            .select(`
+                matchup_id,
+                tweet_1:tweet_id1_str(*, tweet_media(*), users(*), in_reply_to_status_id(*, tweet_media(*))),
+                tweet_2:tweet_id2_str(*, tweet_media(*), users(*), in_reply_to_status_id(*, tweet_media(*)))
+            `);
 
-    if (error || !matchup) {
-        throw new Error(`Error retrieving matchup: ${error?.message}`);
+        if (error || !matchup) {
+            throw new Error(`Error retrieving matchup: ${error?.message}`);
+        }
+
+        return matchup;
+    } else {
+        let { data: matchup, error } = await supabase
+            .from('matchups')
+            .select(`
+                matchup_id,
+                tweet_1:tweet_id1_str(*, tweet_media(*), users(*), in_reply_to_status_id(*, tweet_media(*))),
+                tweet_2:tweet_id2_str(*, tweet_media(*), users(*), in_reply_to_status_id(*, tweet_media(*)))
+            `)
+            .limit(1);
+
+        if (error || !matchup) {
+            throw new Error(`Error retrieving matchup: ${error?.message}`);
+        }
+
+        return matchup[0];
     }
-
-    return matchup;
 }
 
 // Cast Ballot

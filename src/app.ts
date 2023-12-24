@@ -27,7 +27,8 @@ const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANO
 
 app.get('/get-matchups', async (req: Request, res: Response, next: NextFunction) => {
 	try {
-		const matchup = await getMatchup(supabase);
+		const isDebug = req.query.debug === '1' ? true : false;
+		const matchup = await getMatchup(supabase, isDebug);
 		res.json(matchup);
 	} catch (error) {
 		next(error);
