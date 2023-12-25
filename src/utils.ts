@@ -32,6 +32,7 @@ export async function getMatchup(supabase: SupabaseClient, isDebug: boolean) {
                 tweet_1:tweet_id1_str(*, tweet_media(*), users(*), in_reply_to_status_id(*, tweet_media(*))),
                 tweet_2:tweet_id2_str(*, tweet_media(*), users(*), in_reply_to_status_id(*, tweet_media(*)))
             `)
+            .eq('matchup_id', 'a583021d-34d9-410a-849b-8749407c4d45')
             .limit(1);
 
         if (error || !matchup) {

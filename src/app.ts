@@ -19,8 +19,8 @@ app.use(cors()); // Enable CORS
 app.use(helmet()); // Set security headers
 app.use(json()); // Body parser
 app.use(rateLimit({ // Rate limiting
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100 // limit each IP to 100 requests per windowMs
+    windowMs: 10 * 60 * 1000, // 10 minutes
+    max: 250 // limit each IP to 100 requests per windowMs
 }));
 
 const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
