@@ -55,25 +55,11 @@ The `utils.ts` file includes helper functions for retrieving matchups and castin
 Database Structure
 ------------------
 
-The `database.ts` file outlines the structure of the database tables and their relationships. It includes definitions for `matchups`, `tweet_media`, `tweets`, `users`, and `votes` tables.
+The `database.ts` auto-generated file outlines the structure of the database tables and their relationships. It includes definitions for `matchups`, `tweet_media`, `tweets`, `users`, and `votes` tables.
 
-Security and Rate Limiting
+Security, Rate Limiting and Error Handling
 --------------------------
 
-The backend uses `helmet` for security headers and `express-rate-limit` for basic rate limiting to protect against abuse.
-
-Error Handling
---------------
+The backend uses `helmet` for security headers and `express-rate-limit` for basic rate limiting to protect against abuse. 
 
 Errors are managed using the `celebrate` middleware for request validation and a global error handler for catching any unhandled errors.
-
-Development
------------
-
--   Use `npm run lint` for linting the codebase.
--   TypeScript is used for type safety and better code management.
-
-Conclusion
-----------
-
-Best-Tweet-Backend is designed to be a robust and scalable solution for managing tweet matchups and voting. Its modular design and use of modern JavaScript practices make it easy to integrate and extend.
