@@ -2,6 +2,8 @@ README for Best-Tweet-Backend
 =============================
 Note: I gave ChatGPT the source files in this repo and it wrote this README for me.
 
+If you’re looking for the web app, it’s over [here](https://github.com/samhenrigold/best-tweet).
+
 Introduction
 ------------
 
